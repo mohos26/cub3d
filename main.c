@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:44:14 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/06/20 15:37:38 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/06/21 16:41:18 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,5 @@ int	main(int ac, char **av)
 	ptr = ft_init_scene_data(file_name);
 	if (!ptr)
 		(ft_putendl_fd("Erorr", 2), ft_exit(1));
-	puts("!!! Valid instruction !!!");
 	ft_exit(0);
 }

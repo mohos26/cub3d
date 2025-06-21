@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:27:00 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/06/20 15:37:44 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/06/21 21:43:36 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ void	*ft_calloc(size_t size);
 char	*ft_get_file(char *file_name);
 bool	ft_valid_file(char *file_name);
 char	*ft_append_str(char	*s, char c);
+t_data	*ft_parse_map(t_data *ptr, int fd);
 t_data	*ft_init_scene_data(char *file_name);
 bool	ft_parse_instruction(t_data *ptr, char *s);
+bool	ft_validate_line(char *line, char *prev_line, char *next_line);
 
 #endif

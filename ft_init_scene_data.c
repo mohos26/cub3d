@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 11:17:54 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/06/20 15:37:38 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/06/21 21:34:36 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,20 @@ t_data	*ft_init_scene_data(char *file_name)
 	while (true)
 	{
 		line = get_next_line(fd);
-		if (!line)
+		if (!line || ft_check_finish(res))
 			break ;
 		if (*line == '\n')
 			continue ;
-		if (line[ft_strlen(line) - 1] == '\n')
-			line[ft_strlen(line) - 1] = '\0';
-		if (ft_check_finish(res) || !ft_parse_instruction(res, line))
+		if (!ft_parse_instruction(res, line))
 			return (close(fd), NULL);
 	}
-	close(fd);
 	if (!ft_check_finish(res))
-		return (NULL);
+		return (close(fd), NULL);
+	puts("!!! Valid instruction !!!");
+	res = ft_parse_map(res, fd);
+	if (!res)
+		return (close(fd), NULL);
+	puts("!!! Valid map !!!");
+	close(fd);
 	return (res);
 }
