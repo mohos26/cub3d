@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:27:00 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/06/21 21:43:36 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/06/22 15:33:48 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 
 typedef struct s_data
 {
+	char	**map;
 	char	*img_no;
 	char	*img_so;
 	char	*img_we;
@@ -58,6 +59,7 @@ bool	ft_valid_file(char *file_name);
 char	*ft_append_str(char	*s, char c);
 t_data	*ft_parse_map(t_data *ptr, int fd);
 t_data	*ft_init_scene_data(char *file_name);
+char	**ft_append_map(char **lst, char *line);
 bool	ft_parse_instruction(t_data *ptr, char *s);
 bool	ft_validate_line(char *line, char *prev_line, char *next_line);
 

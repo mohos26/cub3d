@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 11:17:54 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/06/21 21:34:36 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/06/22 14:57:49 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static t_data	*ft_local_init(void)
 	t_data	*res;
 
 	res = ft_calloc(sizeof(t_data));
+	res->map = NULL;
 	res->img_ea = NULL;
 	res->img_no = NULL;
 	res->img_so = NULL;
