@@ -275,12 +275,10 @@ void	draw_player(t_game *data)
 		for (int j = -radius; j <= radius; j++)
 		{
 			if (pow(i, 2) + pow(j, 2) <= pow(radius, 2))
-				put_pixel_to_image(&data->image, (int)(data->player.x + j), (int)(data->player.y + i), data->colors.player_c);
+				put_pixel_to_image(&data->image, (int)(data->player.x + j) , (int)(data->player.y + i) , data->colors.player_c);
 		}
 	}
 }
-
-
 
  void where_ray_face(double angle, t_game *data)
 {
@@ -302,7 +300,7 @@ void hiro_intersec(double angle , t_game *data)
 	double y_intersec;
 	double x_step;
 	double y_step;
-	angle *= M_PI / 180.0;
+	angle *= M_PI / 180;
 
 	y_intersec = floor(data->player.y / tile) * tile;
 	if (data->ray.face_dowm)
@@ -317,10 +315,7 @@ void hiro_intersec(double angle , t_game *data)
 	double next_x = x_intersec;
 	double next_y = y_intersec;
 	int hit_found = 0;
-	if (x_intersec < 0 || x_intersec >= mapwidth*tile || y_intersec < 0 || y_intersec >= maphigh*tile) {
-    data->ray.h_distance = INFINITY;
-    return;
-}
+
 	while (next_x >= 0 && next_x < mapwidth * tile && next_y >= 0 && next_y < maphigh * tile)
 	{
 		int map_x = (int)(next_x / tile);
@@ -340,7 +335,7 @@ void hiro_intersec(double angle , t_game *data)
 		next_y += y_step;
 	}
 	if(!hit_found)
-		data->ray.h_distance = INT_MAX;
+		data->ray.h_distance = INFINITY;
 }
 void vert_intersec(double angle , t_game *data)
 {
@@ -348,7 +343,7 @@ void vert_intersec(double angle , t_game *data)
 	double y_intersec;
 	double x_step;
 	double y_step;
-	angle *= M_PI / 180.0;
+	angle *= M_PI / 180;
 
 	x_intersec = floor(data->player.x / tile) * tile;
 	if (data->ray.face_right)
@@ -363,10 +358,6 @@ void vert_intersec(double angle , t_game *data)
 	double next_x = x_intersec;
 	double next_y = y_intersec;
 	int hit_found = 0;
-	if (x_intersec < 0 || x_intersec >= mapwidth*tile || y_intersec < 0 || y_intersec >= maphigh*tile) {
-    data->ray.v_distance = INFINITY;
-    return;
-}
 	while (next_x >= 0 && next_x < mapwidth * tile && next_y >= 0 && next_y < maphigh * tile)
 	{
 		int map_x = (int)(next_x / tile);
@@ -386,7 +377,7 @@ void vert_intersec(double angle , t_game *data)
 		next_y += y_step;
 	}
 	if(!hit_found)
-		data->ray.v_distance =  INT_MAX;
+		data->ray.v_distance =  INFINITY;
 }
 
 double normalize_angle(double angle) {
@@ -401,7 +392,7 @@ void	cast_rays(double angle, t_game *data)
 	where_ray_face(angle, data);
 	hiro_intersec(angle, data);
 	vert_intersec(angle, data);
-	if (data->ray.h_distance < data->ray.v_distance)
+	if (data->ray.h_distance <= data->ray.v_distance)
 	{
 		data->ray.final_hit_x = data->ray.h_hit_x;
 		data->ray.final_hit_y = data->ray.h_hit_y;
@@ -417,20 +408,46 @@ void	cast_rays(double angle, t_game *data)
 	}
 }
 
-void draw_line_DDA(int x0, int y0, int x1, int y1, int color, t_game *data)
+void draw_line_bresenham(int x0, int y0, int x1, int y1, int color, t_game *data)
 {
-    double dx = x1 - x0;
-    double dy = y1 - y0;
-    int steps = fabs(dx) > fabs(dy) ? fabs(dx) : fabs(dy);
-    double x_inc = dx / (double)steps;
-    double y_inc = dy / (double)steps;
-    double x = x0;
-    double y = y0;
-    for (int i = 0; i <= steps; i++) {
-        put_pixel_to_image(&data->image, (int)x, (int)y, color);
-        x += x_inc;
-        y += y_inc;
+    int dx = abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
+    int dy = -abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
+    int err = dx + dy, e2;
+
+    while (1) {
+        put_pixel_to_image(&data->image, x0, y0, color);
+        if (x0 == x1 && y0 == y1) break;
+        e2 = 2 * err;
+        if (e2 >= dy) { err += dy; x0 += sx; }
+        if (e2 <= dx) { err += dx; y0 += sy; }
     }
+}
+
+void	draw_wall(double wall_top, double wall_bouttom, t_game *data, double x)
+{
+	for (int y = wall_top; y <= wall_bouttom; y++)
+	{
+		if (data->ray.was_vertical)
+			put_pixel_to_image(&data->image, x,y,14540253);
+		else
+			put_pixel_to_image(&data->image, x,y,16777215);
+	}
+}
+
+void rendring3d(t_game *data, double r_angle, int i)
+{
+    double angle = (FOV / 2) * (M_PI / 180);
+    double project_plan_distance = (WIND_WIDTH / 2) / tan(angle);
+
+    double ray_angle_diff = (r_angle - data->player.angle) * (M_PI / 180.0);
+    double corrected_distance = data->ray.final_distance * cos(ray_angle_diff);
+
+    double wall_hight = (tile / corrected_distance) * project_plan_distance;
+	if (wall_hight > WIND_HIGHT)
+		wall_hight = WIND_HIGHT;
+    int wall_top = (WIND_HIGHT / 2) - (wall_hight / 2);
+    int wall_bottom = (WIND_HIGHT / 2) + (wall_hight / 2);
+    draw_wall(wall_top, wall_bottom, data, i);
 }
 
 void draw_FOV(t_game *data)
@@ -441,9 +458,10 @@ void draw_FOV(t_game *data)
 	{
 		r_angle = normalize_angle(r_angle);
 		cast_rays(r_angle, data);
-		draw_line_DDA((int)data->player.x, (int)data->player.y,
-              (int)data->ray.final_hit_x, (int)data->ray.final_hit_y,
-              14763060, data);
+		rendring3d(data, r_angle, i);
+		draw_line_bresenham((int)data->player.x, (int)data->player.y,
+                    (int)data->ray.final_hit_x, (int)data->ray.final_hit_y,
+                    0xFF0000, data);
 		r_angle += (double)FOV/RAYS_NUM;
 	}
 }
@@ -493,8 +511,8 @@ int	game_loop(void *args)
     if (!is_wall(data->player.x, new_y))
         data->player.y = new_y;
 	clear_image(&data->image, 0);
-	draw_map(data);
 	draw_FOV(data);
+	draw_map(data);
 	draw_player(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->image.img_ptr, 0, 0);
 	return 0;
