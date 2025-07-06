@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 11:17:54 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/06/22 14:57:49 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/07/05 16:17:12 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,8 @@ t_data	*ft_init_scene_data(char *file_name)
 	}
 	if (!ft_check_finish(res))
 		return (close(fd), NULL);
-	puts("!!! Valid instruction !!!");
 	res = ft_parse_map(res, fd);
 	if (!res)
 		return (close(fd), NULL);
-	puts("!!! Valid map !!!");
-	close(fd);
-	return (res);
+	return (close(fd), res);
 }

@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 16:12:02 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/06/22 15:34:58 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/07/05 16:18:21 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_data	*ft_parse_map(t_data *ptr, int fd)
 		if (!ft_read_next_line(&next_line, end_line, fd)
 			|| !ft_validate_line(line, prev_line, next_line))
 			return (NULL);
-		ptr->map = ft_append_map(ptr->map, line);
+		ft_append_map(ptr, line);
 		prev_line = line;
 		if (next_line)
 			line = next_line;

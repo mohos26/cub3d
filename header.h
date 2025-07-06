@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:27:00 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/06/22 15:33:48 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/07/05 16:23:36 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@
 # include <stdlib.h>
 # include <stdbool.h>
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
+# define BUFFER_SIZE 42
 
 typedef struct s_data
 {
@@ -34,6 +32,8 @@ typedef struct s_data
 	char	*img_so;
 	char	*img_we;
 	char	*img_ea;
+	int		map_width;
+	int		map_height;
 	int		ceil_color;
 	int		floor_color;
 }			t_data;
@@ -59,7 +59,7 @@ bool	ft_valid_file(char *file_name);
 char	*ft_append_str(char	*s, char c);
 t_data	*ft_parse_map(t_data *ptr, int fd);
 t_data	*ft_init_scene_data(char *file_name);
-char	**ft_append_map(char **lst, char *line);
+void	ft_append_map(t_data *ptr, char *line);
 bool	ft_parse_instruction(t_data *ptr, char *s);
 bool	ft_validate_line(char *line, char *prev_line, char *next_line);
 

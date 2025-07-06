@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 15:33:30 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/06/22 15:34:32 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/07/05 16:24:40 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,29 @@ static char	*ft_prepare_line(char *line, int len)
 	return (res);
 }
 
-char	**ft_append_map(char **lst, char *line)
+void	ft_append_map(t_data *ptr, char *line)
 {
-	char	**res;
+	int		height;
+	char	**lst;
 	int		len;
 	int		i;
 
+	lst = ptr->map;
 	len = ft_strlen(line);
 	if (lst && len < (int)ft_strlen(lst[0]))
 		len = ft_strlen(lst[0]);
-	i = 0;
-	while (lst && lst[i])
-		i++;
-	res = ft_calloc(sizeof(char *) * (i + 2));
+	height = 0;
+	while (lst && lst[height])
+		height++;
+	ptr->map = ft_calloc(sizeof(char *) * (height + 2));
 	i = 0;
 	while (lst && lst[i])
 	{
-		res[i] = ft_prepare_line(lst[i], len);
+		ptr->map[i] = ft_prepare_line(lst[i], len);
 		i++;
 	}
-	res[i] = ft_prepare_line(line, len);
-	res[i + 1] = NULL;
-	return (res);
+	ptr->map[i] = ft_prepare_line(line, len);
+	ptr->map[i + 1] = NULL;
+	ptr->map_height = height;
+	ptr->map_width = len;
 }
