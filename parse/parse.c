@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:44:14 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/07/09 15:46:06 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/07/11 12:31:19 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void parse(int ac, char **av, t_game *data)
 	file_name = ft_get_file(*++av);
 	if (!file_name)
 		(ft_putendl_fd("Erorr", 2), ft_exit(1));
-	puts("!!! Valid file_name !!!");
 	ptr = ft_init_scene_data(file_name);
 	if (!ptr)
 		(ft_putendl_fd("Erorr", 2), ft_exit(1));
@@ -31,4 +30,8 @@ void parse(int ac, char **av, t_game *data)
 	data->map_width = ptr->map_width;
 	data->map = ptr->map;
 	// NOTE : need to capture also teh ceiling and the floor and the xpms !!!!!
+	data->textures.no_path = ptr->img_no;
+	data->textures.ea_path = ptr->img_ea;
+	data->textures.so_path = ptr->img_so;
+	data->textures.we_path = ptr->img_we;
 }

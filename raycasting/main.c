@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 17:00:12 by aouanni           #+#    #+#             */
-/*   Updated: 2025/07/07 19:09:07 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/07/11 10:38:03 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,12 +120,11 @@ int main(int ac, char **av)
 	ft_memset(&data, 0, sizeof(t_game));
 	data.colors.tile_c = 16710599;
 	data.colors.player_c = 6204374;
-	;
 	parse(ac, av, &data);
-	init(&data); // NOTE: this maybe must be in parsing functions
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		cleanup_exit("Error\nMlx session failed!!\n", &data);
+	init(&data); // NOTE: this maybe must be in parsing functions
 	data.win = mlx_new_window(data.mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	if (!data.win)
 		cleanup_exit("Error\nWindow creation failed!!\n", &data);

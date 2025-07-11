@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:18:08 by aouanni           #+#    #+#             */
-/*   Updated: 2025/07/09 16:44:48 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/07/11 14:42:38 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,54 @@ typedef struct s_input
 	int escap;
 } t_input;
 
-typedef struct s_texture
-{
-	char *no;
-	char *so;
-	char *we;
-	char *ea;
+typedef struct s_texture {
+	char	*no_path;
+	char	*so_path;
+	char	*we_path;
+	char	*ea_path;
+
+	void	*no_img;
+	void	*so_img;
+	void	*we_img;
+	void	*ea_img;
+
+	int		no_bpp;
+	int		so_bpp;
+	int		we_bpp;
+	int		ea_bpp;
+
+	int		no_line;
+	int		so_line;
+	int		we_line;
+	int		ea_line;
+
+	int		no_end;
+	int		so_end;
+	int		we_end;
+	int		ea_end;
+
+	char	*no_data;
+	char	*so_data;
+	char	*we_data;
+	char	*ea_data;
+
+	// int		no_w;
+	// int		so_w;
+	// int		we_w;
+	// int		ea_w;
+
+	// int		no_h;
+	// int		so_h;
+	// int		we_h;
+	// int		ea_h;
+
+	int		tex_w;
+	int		tex_h;
+
+	char	*curr_tex_data;
+	int		curr_line;
+	int		curr_bpp;
+	int		tex_x;
 } t_texture;
 
 typedef struct s_player

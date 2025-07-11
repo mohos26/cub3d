@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 09:31:08 by aouanni           #+#    #+#             */
-/*   Updated: 2025/07/07 19:09:07 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/07/11 14:41:47 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,20 @@ void init(t_game *data)
 		y++;
 	}
 	// TODO: initialize textures??
+	data->textures.tex_w = TILE;
+	data->textures.tex_h = TILE;
+
+	data->textures.no_img = mlx_xpm_file_to_image(data->mlx, data->textures.no_path, &data->textures.tex_w, &data->textures.tex_h);
+	data->textures.no_data = mlx_get_data_addr(data->textures.no_img, &data->textures.no_bpp, &data->textures.no_line, &data->textures.no_end);
+
+	data->textures.ea_img = mlx_xpm_file_to_image(data->mlx, data->textures.ea_path, &data->textures.tex_w, &data->textures.tex_h);
+	data->textures.ea_data = mlx_get_data_addr(data->textures.ea_img, &data->textures.ea_bpp, &data->textures.ea_line, &data->textures.ea_end);
+
+	data->textures.so_img = mlx_xpm_file_to_image(data->mlx, data->textures.so_path, &data->textures.tex_w, &data->textures.tex_h);
+	data->textures.so_data = mlx_get_data_addr(data->textures.so_img, &data->textures.so_bpp, &data->textures.so_line, &data->textures.so_end);
+
+	data->textures.we_img = mlx_xpm_file_to_image(data->mlx, data->textures.we_path, &data->textures.tex_w, &data->textures.tex_h);
+	data->textures.we_data = mlx_get_data_addr(data->textures.we_img, &data->textures.we_bpp, &data->textures.we_line, &data->textures.we_end);
 	// NOTE: related to bonus!!! minimap
 	//  data->colors.tile_c = 16710599;
 	//  data->colors.player_c = 6204374;

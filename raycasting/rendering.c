@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:14:41 by aouanni           #+#    #+#             */
-/*   Updated: 2025/07/07 19:09:07 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/07/11 14:42:44 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,19 @@
 
 void draw_wall(double wall_top, double wall_bouttom, t_game *data, double x)
 {
-	int y;
-
-	y = wall_top;
-	while (y <= wall_bouttom)
+	int wall_height = wall_bouttom - wall_top + 1;
+	for (int y = wall_top; y <= wall_bouttom; y++)
 	{
-		if (data->ray.was_vertical)
-			put_pixel_to_image(&data->image, x, y, 14540253);
-		else
-			put_pixel_to_image(&data->image, x, y, 16777215);
-		y++;
+		double sample_pos = (y - wall_top) / (double)wall_height;
+		int tex_y = (int)(sample_pos * data->textures.tex_h);
+
+		// address into texture data buffer:
+		char *pixel = data->textures.curr_tex_data
+					+ (tex_y * data->textures.curr_line)
+					+ (data->textures.tex_x * (data->textures.curr_bpp / 8));
+		int color = *(int *)pixel;  // assuming endian matches
+
+		put_pixel_to_image(&data->image, x, y, color);
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 09:33:18 by aouanni           #+#    #+#             */
-/*   Updated: 2025/07/07 19:09:45 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/07/11 11:59:08 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ void cleanup_exit(char *message, t_game *data)
 	if (data->image.img_ptr)
 		mlx_destroy_image(data->mlx, data->image.img_ptr);
 	// TODO: destroy other textures images && call GC(map free maybe)
+	mlx_destroy_image(data->mlx, data->textures.no_img);
+	mlx_destroy_image(data->mlx, data->textures.so_img);
+	mlx_destroy_image(data->mlx, data->textures.we_img);
+	mlx_destroy_image(data->mlx, data->textures.ea_img);
 	if (message)
 		ft_putstr_fd(message, 2);
 	exit(1);

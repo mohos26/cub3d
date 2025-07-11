@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:13:44 by aouanni           #+#    #+#             */
-/*   Updated: 2025/07/07 19:09:07 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/07/11 14:43:11 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,14 @@ void vert_intersec(double r_angle, t_game *data)
 
 void cast_rays(double r_angle, t_game *data)
 {
+	char	*curr_tex_data;
+	double	hit_offset;
+	int		curr_line;
+	int		curr_bpp;
+	int		tex_x;
+	int		tex_w;
+	int		tex_h;
+
 	where_ray_face(r_angle, data);
 	hiro_intersec(r_angle, data);
 	vert_intersec(r_angle, data);
@@ -129,4 +137,51 @@ void cast_rays(double r_angle, t_game *data)
 		data->ray.final_distance = data->ray.v_distance;
 		data->ray.was_vertical = 1; // NOTE: the opposite
 	}
+
+	// texturing part
+	if (data->ray.was_vertical)
+	{
+		if (data->ray.face_right) {
+			curr_tex_data = data->textures.ea_data;
+			curr_bpp = data->textures.ea_bpp;
+			curr_line = data->textures.ea_line;
+			// tex_w = data->textures.ea_w;
+			// tex_h = data->textures.ea_h;
+		} else {
+			curr_tex_data = data->textures.we_data;
+			curr_bpp = data->textures.we_bpp;
+			curr_line = data->textures.we_line;
+			// tex_w = data->textures.we_w;
+			// tex_h = data->textures.we_h;
+		}
+	}
+	else
+	{
+		if (data->ray.face_down)
+		{
+			curr_tex_data = data->textures.so_data;
+			curr_bpp = data->textures.so_bpp;
+			curr_line = data->textures.so_line;
+			// tex_w = data->textures.no_w;
+			// tex_h = data->textures.no_h;
+		}
+		else
+		{
+			curr_tex_data = data->textures.no_data;
+			curr_bpp = data->textures.no_bpp;
+			curr_line = data->textures.no_line;
+			// tex_w = data->textures.so_w;
+			// tex_h = data->textures.so_h;
+		}
+	}
+	if (data->ray.was_vertical)
+		hit_offset = fmod(data->ray.final_hit_y, TILE);
+	else
+		hit_offset = fmod(data->ray.final_hit_x, TILE);
+	tex_x = (int)(hit_offset * (data->textures.tex_w / (double)TILE));
+
+	data->textures.curr_tex_data = curr_tex_data;
+	data->textures.curr_line = curr_line;
+	data->textures.curr_bpp = curr_bpp;
+	data->textures.tex_x = tex_x;
 }
