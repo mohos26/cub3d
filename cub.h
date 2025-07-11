@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:18:08 by aouanni           #+#    #+#             */
-/*   Updated: 2025/07/11 14:42:38 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/07/11 15:27:01 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,15 +89,15 @@ typedef struct s_texture {
 	char	*we_data;
 	char	*ea_data;
 
-	// int		no_w;
-	// int		so_w;
-	// int		we_w;
-	// int		ea_w;
+	int		no_w;
+	int		so_w;
+	int		we_w;
+	int		ea_w;
 
-	// int		no_h;
-	// int		so_h;
-	// int		we_h;
-	// int		ea_h;
+	int		no_h;
+	int		so_h;
+	int		we_h;
+	int		ea_h;
 
 	int		tex_w;
 	int		tex_h;
