@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:44:14 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/07/07 19:09:07 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/07/09 15:46:06 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void parse(int ac, char **av, t_game *data)
 	ptr = ft_init_scene_data(file_name);
 	if (!ptr)
 		(ft_putendl_fd("Erorr", 2), ft_exit(1));
-	// NOTE: this must be better and alighned with the global struct
+	//NOTE: this must be better and alighned with the global struct
 	data->map_height = ptr->map_height + 1; // NOTE: the calculation of the height in the parsing is messign 1 line
 	data->map_width = ptr->map_width;
 	data->map = ptr->map;

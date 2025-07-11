@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_scene_data_utils.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 15:20:08 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/07/07 19:09:07 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/07/09 15:38:01 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,11 @@ static int ft_parse_rgb_string(char *s)
 				return (-1);
 		}
 		else if (*s == ',' && !flag && count < 2)
+		{
+			while (*(s + 1) && *(s + 1) == ' ')
+				s++;
 			ft_append_rgb(&count, &flag, &color, &n);
+		}
 		else
 			return (-1);
 		s++;
@@ -86,12 +90,14 @@ bool ft_parse_instruction(t_data *ptr, char *s)
 	char *key;
 	char *value;
 
+	while (*s == ' ')
+		s++;
 	(true, key = NULL, value = NULL);
 	if (s[ft_strlen(s) - 1] == '\n')
 		s[ft_strlen(s) - 1] = '\0';
 	while (*s)
 	{
-		if (*s != ' ')
+		if (*s && *s != ' ')
 			key = ft_append_str(key, *s);
 		else
 		{

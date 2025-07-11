@@ -1,10 +1,23 @@
 NO d.cub
-SO d.cub
 WE d.cub
-EA       d.cub
+      EA       d.cub
 
-C 0,0,33
+
+
+
+
+
+
+      C      0,0,33
+
+SO          d.cub
+
+
+
 F 60,0,234
+
+
+
 
 
 111111111111111111111
