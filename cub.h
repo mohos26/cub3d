@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:18:08 by aouanni           #+#    #+#             */
-/*   Updated: 2025/07/11 15:27:01 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/07/13 15:55:20 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 #define TILE 32
 #define RADIUS 8 // for bonus
-#define PLAYERSPEED 2
+#define PLAYERSPEED 12
 #define ROTATIONSPEED 2 // in degree
 #define WIN_WIDTH 1680
 #define WIN_HEIGHT 1050
@@ -41,11 +41,11 @@
 
 typedef struct s_color
 {
-	double tile_c;
-	double flor_c;
-	double ceiling_c;
-	double player_c;
-} t_color;
+	double	tile_c;
+	double	flor_c;
+	double	ceiling_c;
+	double	player_c;
+}	t_color;
 
 typedef struct s_input
 {
@@ -56,9 +56,10 @@ typedef struct s_input
 	int rot_right;
 	int rot_left;
 	int escap;
-} t_input;
+}	t_input;
 
-typedef struct s_texture {
+typedef struct s_texture
+{
 	char	*no_path;
 	char	*so_path;
 	char	*we_path;
@@ -106,18 +107,18 @@ typedef struct s_texture {
 	int		curr_line;
 	int		curr_bpp;
 	int		tex_x;
-} t_texture;
+}	t_texture;
 
 typedef struct s_player
 {
-	double x;
-	double y;
-	double angle; // in radian
-} t_player;
+	double	x;
+	double	y;
+	double	angle; // in radian
+}	t_player;
 
 typedef struct s_image
 {
-	void *img_ptr;
+	void	*img_ptr;
 	char *data;
 	int bbp;
 	int row_len;
@@ -201,7 +202,7 @@ void clear_image(t_image *img, int color);
 void where_ray_face(double angle, t_game *data);
 double r_distance(double x1, double y1, double x2, double y2);
 void cast_rays(double r_angle, t_game *data);
-void rendring3d(t_game *data, double r_angle, int i);
+void rendring3d(t_game *data, double r_angle, int x);
 void move_controle(t_game *data);
 void put_pixel_to_image(t_image *img, int x, int y, int color);
 void parse(int ac, char **av, t_game *data);

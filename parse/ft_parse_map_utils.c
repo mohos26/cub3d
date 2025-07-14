@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_map_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 21:43:02 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/07/07 19:09:07 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/07/13 10:35:38 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ bool ft_validate_line(char *line, char *prev_line, char *next_line)
 	int i;
 	static bool player_flag;
 
+	if (*line == '\n')
+		return (false);
 	i = 0;
 	while (line[i])
 	{

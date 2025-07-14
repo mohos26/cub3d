@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 16:12:02 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/07/07 19:09:07 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/07/13 10:50:02 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,19 @@ static char *ft_skip_empty_lines(int fd)
 	return (line);
 }
 
-static bool ft_read_next_line(char **next_line, bool end_line, int fd)
+static bool	ft_read_next_line(char **line, bool end_line, int fd)
 {
 	if (!end_line)
 	{
-		*next_line = get_next_line(fd);
-		if (!next_line)
+		*line = get_next_line(fd);
+		if (!*line || **line == '\n')
 			return (false);
 	}
 	else
-		*next_line = NULL;
+		*line = NULL;
 	return (true);
 }
+
 
 static char *ft_local_init(int fd, char **next, char **prev, bool *end_line)
 {
