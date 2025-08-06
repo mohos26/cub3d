@@ -6,20 +6,20 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 21:43:02 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/07/13 10:35:38 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/08/06 10:42:59 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
 
-static bool ft_aid4(char c)
+static bool	ft_aid4(char c)
 {
 	if (c == '0' || c == 'N' || c == 'W' || c == 'S' || c == 'E')
 		return (true);
 	return (false);
 }
 
-static bool ft_check_surrounded(int i, char *line, char *prev, char *next)
+static bool	ft_check_surrounded(int i, char *line, char *prev, char *next)
 {
 	if (i)
 	{
@@ -45,10 +45,10 @@ static bool ft_check_surrounded(int i, char *line, char *prev, char *next)
 	return (true);
 }
 
-bool ft_validate_line(char *line, char *prev_line, char *next_line)
+bool	ft_validate_line(char *line, char *prev_line, char *next_line)
 {
-	int i;
-	static bool player_flag;
+	static bool	player_flag;
+	int			i;
 
 	if (*line == '\n')
 		return (false);
@@ -70,7 +70,5 @@ bool ft_validate_line(char *line, char *prev_line, char *next_line)
 			return (false);
 		i++;
 	}
-	if (!next_line && !player_flag)
-		return (false);
-	return (true);
+	return (next_line || player_flag);
 }

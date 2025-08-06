@@ -6,13 +6,13 @@
 /*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:14:43 by aouanni           #+#    #+#             */
-/*   Updated: 2025/07/07 19:09:07 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/01 17:03:48 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
 
-int key_press(int keycode, t_game *data)
+int	key_press(int keycode, t_game *data)
 {
 	if (keycode == PLAYER_UP)
 		data->input.up = 1;
@@ -31,7 +31,7 @@ int key_press(int keycode, t_game *data)
 	return (0);
 }
 
-int key_release(int keycode, t_game *data)
+int	key_release(int keycode, t_game *data)
 {
 	if (keycode == PLAYER_UP)
 		data->input.up = 0;
@@ -50,7 +50,7 @@ int key_release(int keycode, t_game *data)
 	return (0);
 }
 
-void move_player(t_game *data, double *new_x, double *new_y)
+void	move_player(t_game *data, double *new_x, double *new_y)
 {
 	if (data->input.up)
 	{
@@ -74,10 +74,10 @@ void move_player(t_game *data, double *new_x, double *new_y)
 	}
 }
 
-void move_controle(t_game *data)
+void	move_controle(t_game *data)
 {
-	double new_x;
-	double new_y;
+	double	new_x;
+	double	new_y;
 
 	new_x = data->player.x;
 	new_y = data->player.y;
@@ -89,8 +89,8 @@ void move_controle(t_game *data)
 	if (data->input.rot_left)
 		data->player.angle -= ROTATIONSPEED * (M_PI / 180);
 	data->player.angle = normalize_angle(data->player.angle);
-	if (!is_wall(new_x, data->player.y, data))
+	if (!is_collesion(new_x, data->player.y, data))
 		data->player.x = new_x;
-	if (!is_wall(data->player.x, new_y, data))
+	if (!is_collesion(data->player.x, new_y, data))
 		data->player.y = new_y;
 }

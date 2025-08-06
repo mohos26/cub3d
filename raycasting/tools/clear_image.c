@@ -6,16 +6,16 @@
 /*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 09:37:17 by aouanni           #+#    #+#             */
-/*   Updated: 2025/07/07 19:09:45 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/01 15:26:18 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub.h"
 
-void clear_image(t_image *img, int color)
+void	clear_image(t_image *img, int color)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = 0;
 	while (y < WIN_HEIGHT)

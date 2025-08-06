@@ -3,63 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_scene_data.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 11:17:54 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/07/07 19:09:07 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/06 10:27:53 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
 
-static bool ft_check_finish(t_data *ptr)
+static bool	ft_check_finish(t_game *data)
 {
-	if (ptr->ceil_color < 0 || ptr->floor_color < 0)
+	if (data->colors.ceiling_c < 0 || data->colors.floor_c < 0)
 		return (false);
-	else if (!ptr->img_ea || !ptr->img_so || !ptr->img_we || !ptr->img_no)
+	else if (!data->tex.ea || !data->tex.so || !data->tex.we || !data->tex.no)
 		return (false);
 	return (true);
 }
 
-static t_data *ft_local_init(void)
+static void	ft_local_init(t_game *data, bool *start)
 {
-	t_data *res;
-
-	res = ft_calloc(sizeof(t_data));
-	res->map = NULL;
-	res->img_ea = NULL;
-	res->img_no = NULL;
-	res->img_so = NULL;
-	res->img_we = NULL;
-	res->ceil_color = -1;
-	res->floor_color = -1;
-	return (res);
+	*start = true;
+	data->map = NULL;
+	data->tex.ea = NULL;
+	data->tex.no = NULL;
+	data->tex.so = NULL;
+	data->tex.we = NULL;
+	data->colors.ceiling_c = -1;
+	data->colors.floor_c = -1;
 }
 
-t_data *ft_init_scene_data(char *file_name)
+static bool	ft_aid(t_game *data, bool start, int fd)
 {
-	int fd;
-	char *line;
-	t_data *res;
+	if (start)
+		return (ft_error("Empty File", fd));
+	if (!ft_check_finish(data))
+		return (ft_error("Missing or incomplete texture/color data", fd));
+	if (!ft_parse_map(data, fd))
+		return (ft_error("Failed to parse the map layout", fd));
+	return (close(fd), true);
+}
 
-	res = ft_local_init();
+bool	ft_init_scene_data(char *file_name, t_game *data)
+{
+	int		fd;
+	char	*line;
+	bool	start;
+
+	ft_local_init(data, &start);
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
-		return (NULL);
+		return (ft_error("Failed to open cub file", -1));
 	while (true)
 	{
+		if (ft_check_finish(data))
+			break ;
 		line = get_next_line(fd);
-		if (!line || ft_check_finish(res))
-			break;
+		if (!line)
+			break ;
+		start = false;
 		if (*line == '\n')
-			continue;
-		if (!ft_parse_instruction(res, line))
-			return (close(fd), NULL);
+			continue ;
+		if (!ft_parse_instruction(data, line))
+			return (close(fd), false);
 	}
-	if (!ft_check_finish(res))
-		return (close(fd), NULL);
-	res = ft_parse_map(res, fd);
-	if (!res)
-		return (close(fd), NULL);
-	return (close(fd), res);
+	return (ft_aid(data, start, fd));
 }

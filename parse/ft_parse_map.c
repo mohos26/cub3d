@@ -6,15 +6,15 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 16:12:02 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/07/13 10:50:02 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/08/06 10:35:27 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
 
-static char *ft_skip_empty_lines(int fd)
+static char	*ft_skip_empty_lines(int fd)
 {
-	char *line;
+	char	*line;
 
 	line = NULL;
 	while (true)
@@ -23,7 +23,7 @@ static char *ft_skip_empty_lines(int fd)
 		if (!line)
 			return (NULL);
 		if (*line != '\n')
-			break;
+			break ;
 	}
 	return (line);
 }
@@ -41,8 +41,7 @@ static bool	ft_read_next_line(char **line, bool end_line, int fd)
 	return (true);
 }
 
-
-static char *ft_local_init(int fd, char **next, char **prev, bool *end_line)
+static char	*ft_local_init(int fd, char **next, char **prev, bool *end_line)
 {
 	*end_line = false;
 	*prev = NULL;
@@ -50,30 +49,30 @@ static char *ft_local_init(int fd, char **next, char **prev, bool *end_line)
 	return (ft_skip_empty_lines(fd));
 }
 
-t_data *ft_parse_map(t_data *ptr, int fd)
+bool	ft_parse_map(t_game *data, int fd)
 {
-	char *line;
-	bool end_line;
-	char *prev_line;
-	char *next_line;
+	char	*line;
+	bool	end_line;
+	char	*prev_line;
+	char	*next_line;
 
 	line = ft_local_init(fd, &next_line, &prev_line, &end_line);
 	if (!line)
-		return (NULL);
+		return (false);
 	while (true)
 	{
 		if (line[ft_strlen(line) - 1] == '\n')
 			line[ft_strlen(line) - 1] = '\0';
 		else
 			end_line = true;
-		if (!ft_read_next_line(&next_line, end_line, fd) || !ft_validate_line(line, prev_line, next_line))
-			return (NULL);
-		ft_append_map(ptr, line);
+		if (!ft_read_next_line(&next_line, end_line, fd)
+			|| !ft_validate_line(line, prev_line, next_line))
+			return (false);
+		ft_append_map(data, line);
 		prev_line = line;
-		if (next_line)
-			line = next_line;
-		else
-			break;
+		if (!next_line)
+			break ;
+		line = next_line;
 	}
-	return (ptr);
+	return (true);
 }

@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_append_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 15:33:30 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/07/07 19:09:08 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/03 15:05:35 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
 
-static char *ft_prepare_line(char *line, int len)
+static char	*ft_prepare_line(char *line, int len)
 {
-	int i;
-	char *res;
+	int		i;
+	char	*res;
 
 	i = 0;
 	res = ft_strdup(line);
@@ -30,29 +30,29 @@ static char *ft_prepare_line(char *line, int len)
 	return (res);
 }
 
-void ft_append_map(t_data *ptr, char *line)
+void	ft_append_map(t_game *data, char *line)
 {
-	int height;
-	char **lst;
-	int len;
-	int i;
+	int		height;
+	char	**lst;
+	int		len;
+	int		i;
 
-	lst = ptr->map;
+	lst = data->map;
 	len = ft_strlen(line);
 	if (lst && len < (int)ft_strlen(lst[0]))
 		len = ft_strlen(lst[0]);
-	height = 0;
+	height = 1;
 	while (lst && lst[height])
 		height++;
-	ptr->map = ft_calloc(sizeof(char *) * (height + 2));
+	data->map = ft_calloc(sizeof(char *) * (height + 2));
 	i = 0;
 	while (lst && lst[i])
 	{
-		ptr->map[i] = ft_prepare_line(lst[i], len);
+		data->map[i] = ft_prepare_line(lst[i], len);
 		i++;
 	}
-	ptr->map[i] = ft_prepare_line(line, len);
-	ptr->map[i + 1] = NULL;
-	ptr->map_height = height;
-	ptr->map_width = len;
+	data->map[i] = ft_prepare_line(line, len);
+	data->map[i + 1] = NULL;
+	data->map_height = height;
+	data->map_width = len;
 }

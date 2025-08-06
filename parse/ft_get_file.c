@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_file.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:54:24 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/07/07 19:09:07 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/05 12:01:12 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
 
-char *ft_get_file(char *file_name)
+char	*ft_get_file(char *file_name)
 {
-	int length;
+	int	length;
 
 	if (!ft_valid_file(file_name))
 		return (NULL);

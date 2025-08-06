@@ -6,13 +6,13 @@
 /*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 09:47:15 by aouanni           #+#    #+#             */
-/*   Updated: 2025/07/07 19:09:45 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/01 15:27:50 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub.h"
 
-void where_ray_face(double angle, t_game *data)
+void	where_ray_face(double angle, t_game *data)
 {
 	data->ray.face_down = angle > 0 && angle < M_PI;
 	data->ray.face_up = !data->ray.face_down;

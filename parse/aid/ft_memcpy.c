@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 13:08:27 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/07/07 19:09:45 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/06 10:39:31 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub.h"
 
-void *ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	unsigned char *ptr;
-	const unsigned char *aid;
+	unsigned char		*ptr;
+	const unsigned char	*aid;
 
 	if (!dst && !src)
 		return (NULL);
