@@ -16,7 +16,7 @@ BONUS = $(bonus_dir)parse/aid/ft_bzero_bonus.c  $(bonus_dir)parse/aid/ft_isdigit
 	$(bonus_dir)raycasting/init_bonus.c  $(bonus_dir)raycasting/init2_bonus.c  $(bonus_dir)raycasting/main_bonus.c  $(bonus_dir)raycasting/move_controle_bonus.c  $(bonus_dir)raycasting/raycast_bonus.c  $(bonus_dir)raycasting/rendering_bonus.c \
 	$(bonus_dir)raycasting/tools/calcule_distance_bonus.c  $(bonus_dir)raycasting/tools/clean_exit_bonus.c  $(bonus_dir)raycasting/tools/clear_image_bonus.c  $(bonus_dir)raycasting/tools/ft_memset_bonus.c  $(bonus_dir)raycasting/tools/is_wall_bonus.c  \
 	$(bonus_dir)raycasting/tools/normalize_angle_bonus.c  $(bonus_dir)raycasting/tools/put_pixel_to_image_bonus.c  $(bonus_dir)raycasting/tools/putstr_fd_bonus.c  $(bonus_dir)raycasting/tools/rendreing_tools_bonus.c  $(bonus_dir)raycasting/tools/where_ray_face_bonus.c \
-	$(bonus_dir)raycasting/sprites_bonus.c  $(bonus_dir)raycasting/minimap_bonus.c  $(bonus_dir)raycasting/mouse_rotation_bonus.c   $(bonus_dir)raycasting/tools/put_pixel_to_minimap_bonus.c
+	$(bonus_dir)raycasting/sprites_bonus.c  $(bonus_dir)raycasting/minimap_bonus.c  $(bonus_dir)raycasting/mouse_rotation_bonus.c   $(bonus_dir)raycasting/tools/put_pixel_to_minimap_bonus.c  $(bonus_dir)/sound/init_sound_bonus.c  $(bonus_dir)/sound/sound_bonus.c  $(bonus_dir)/sound/sound_control_bonus.c
 
 
 
@@ -44,7 +44,7 @@ bonus: $(NAME_BONUS)
 $(NAME_BONUS): $(OBJB)
 	$(CC) $(CFLAGS) $(LINK) $(OBJB) -o $@
 
-$(bonus_dir)%.o: $(bonus_dir)%.c $(bonus_dir)cub_bonus.h
+$(bonus_dir)%.o: $(bonus_dir)%.c $(bonus_dir)cub_bonus.h $(bonus_dir)/sound/miniaudio.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

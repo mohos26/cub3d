@@ -6,7 +6,7 @@
 /*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 17:27:11 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/14 10:05:35 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/14 17:04:52 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <stdlib.h>
 # include <time.h>
 # include <stdio.h>
+# include "sound/miniaudio_bonus.h"
 
 # define TILE 32
 # define RADIUS 5
@@ -158,6 +159,18 @@ typedef struct s_sprites
 	int		sprite_y;
 }	t_sprites;
 
+typedef struct s_sound
+{
+	ma_engine	engine;
+	ma_sound	w_sound;
+	ma_sound	s_sound;
+	ma_sound	b_sound;
+	int			is_engine;
+	int			is_w;
+	int			is_s;
+	int			is_b;
+}	t_sound;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -174,6 +187,7 @@ typedef struct s_game
 	t_render	render;
 	t_mini_mp	m_mp;
 	t_sprites	sprt;
+	t_sound		sound;
 }	t_game;
 
 void	*ft_memset(void *b, int c, size_t len);
@@ -205,6 +219,9 @@ int		mouse_move(int x, int y, void *args);
 void	draw_sprite(t_game *data);
 void	update_sprite_animation(t_game *data);
 void	init_sprites2(t_game *data, char *sp3);
+void	init_sound(t_game *data);
+void	sound_controle(t_game *data);
+void	sound_controle2(t_game *data);
 /* -------------------------------------------------------------------------- */
 
 bool	ft_isdigit(int c);

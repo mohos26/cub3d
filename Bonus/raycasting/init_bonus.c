@@ -6,7 +6,7 @@
 /*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 09:31:08 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/14 10:06:19 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/14 17:07:46 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	init_all_img2(t_game *data)
 	data->m_mp.mini_img.img_ptr = mlx_new_image(data->mlx,
 			data->m_mp.width, data->m_mp.height);
 	if (!data->m_mp.mini_img.img_ptr)
-		cleanup_exit("Error\nm_mp creation failed!!\n", data);
+		cleanup_exit("Error\nminimap creation failed!!\n", data);
 	data->m_mp.mini_img.data = mlx_get_data_addr(data->m_mp.mini_img.img_ptr,
 			&data->m_mp.mini_img.bbp, &data->m_mp.mini_img.row_len,
 			&data->m_mp.mini_img.endian);

@@ -6,7 +6,7 @@
 /*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 09:33:18 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/12 11:31:59 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/14 16:02:57 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,18 @@ int	destroy(void *args)
 	data = (t_game *)args;
 	cleanup_exit(NULL, data);
 	return (0);
+}
+
+void	cleanup_sounds(t_game *data)
+{
+	if (data->sound.is_b)
+		ma_sound_uninit(&data->sound.b_sound);
+	if (data->sound.is_w)
+		ma_sound_uninit(&data->sound.w_sound);
+	if (data->sound.is_s)
+		ma_sound_uninit(&data->sound.s_sound);
+	if (data->sound.is_engine)
+		ma_engine_uninit(&data->sound.engine);
 }
 
 void	cleanup_exit(char *message, t_game *data)
@@ -43,6 +55,7 @@ void	cleanup_exit(char *message, t_game *data)
 		mlx_destroy_image(data->mlx, data->sprt.frm[1].img_ptr);
 	if (data->sprt.frm[2].img_ptr)
 		mlx_destroy_image(data->mlx, data->sprt.frm[2].img_ptr);
+	cleanup_sounds(data);
 	if (message)
 		ft_putstr_fd(message, 2);
 	ft_exit(1);

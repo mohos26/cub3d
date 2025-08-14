@@ -6,7 +6,7 @@
 /*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:14:43 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/12 11:28:23 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/14 15:48:04 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	key_press(int keycode, t_game *data)
 		data->sprt.current_frame = 0;
 		data->sprt.frame_counter = 0;
 		data->sprt.animation_complete = 0;
+		sound_controle2(data);
 	}
 	return (0);
 }
@@ -103,4 +104,5 @@ void	move_controle(t_game *data)
 		data->player.x = new_x;
 	if (!is_collesion(data->player.x, new_y, data))
 		data->player.y = new_y;
+	sound_controle(data);
 }

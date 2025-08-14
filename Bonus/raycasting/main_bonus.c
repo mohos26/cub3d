@@ -6,7 +6,7 @@
 /*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 17:00:12 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/14 09:53:05 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/14 16:32:31 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,11 @@ int	main(int ac, char **av)
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		cleanup_exit("Error\nMlx session failed!!\n", &data);
-	init_all_img(&data);
 	data.win = mlx_new_window(data.mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	if (!data.win)
 		cleanup_exit("Error\nWindow creation failed!!\n", &data);
+	init_all_img(&data);
+	init_sound(&data);
 	mlx_hook(data.win, 2, 0, key_press, &data);
 	mlx_hook(data.win, 3, 0, key_release, &data);
 	mlx_hook(data.win, 17, 0, destroy, &data);
