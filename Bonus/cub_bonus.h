@@ -6,7 +6,7 @@
 /*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 17:27:11 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/12 11:09:12 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/14 10:05:35 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <libc.h>
 # include <string.h>
-# include "../MLX/mlx.h"
+# include "mlx.h"
 # include <math.h>
 # include <limits.h>
 # include <stdbool.h>
@@ -67,6 +67,7 @@ typedef struct s_input
 	int	rot_left;
 	int	escap;
 	int	shoot;
+	int	prev_x;
 }	t_input;
 
 typedef struct s_image

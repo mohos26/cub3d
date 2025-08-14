@@ -6,7 +6,7 @@
 /*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 17:27:11 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/07 16:33:18 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/14 09:52:12 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <libc.h>
 # include <string.h>
-# include "../MLX/mlx.h"
+# include "mlx.h"
 # include <math.h>
 # include <limits.h>
 # include <stdbool.h>

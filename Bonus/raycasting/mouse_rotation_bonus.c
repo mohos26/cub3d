@@ -6,7 +6,7 @@
 /*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:29:00 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/12 11:36:30 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/14 10:17:09 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,16 @@
 
 int	mouse_move(int x, int y, void *args)
 {
-	t_game	*data;
-	int		dx;
-	int		center_x;
-	int		center_y;
+	t_game		*data;
+	int			dx;
 
 	data = (t_game *)args;
-	center_x = WIN_WIDTH / 2;
-	center_y = WIN_HEIGHT / 2;
-	if ((x == center_x && y == center_y)
+	if (x >= WIN_WIDTH || y >= WIN_HEIGHT || x < 0 || y < 0
 		|| data->input.rot_left || data->input.rot_right)
 		return (0);
-	dx = x - center_x;
-	data->player.angle += dx * 0.02;
+	dx = x - data->input.prev_x;
+	data->player.angle += dx * 0.004;
 	data->player.angle = normalize_angle(data->player.angle);
-	mlx_mouse_move(data->win, center_x, center_y);
+	data->input.prev_x = x;
 	return (0);
 }

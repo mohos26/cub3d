@@ -26,27 +26,23 @@ OBJB = $(BONUS:.c=.o)
 
 NAME = cub3D
 NAME_BONUS = cub3D_bonus
-LIB = MLX/libmlx.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-LINK = -framework appkit -framework opengl
+LINK = -framework appkit -framework opengl -lmlx
 RM = rm -rf
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIB)
-	$(CC) $(CFLAGS) $(LINK) $(LIB) $(OBJS) -o $@
-
-$(LIB):
-	make -C MLX
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(LINK) $(OBJS) -o $@
 
 $(src_dir)%.o: $(src_dir)%.c $(src_dir)cub.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 bonus: $(NAME_BONUS)
 
-$(NAME_BONUS): $(OBJB) $(LIB)
-	$(CC) $(CFLAGS) $(LINK) $(LIB) $(OBJB) -o $@
+$(NAME_BONUS): $(OBJB)
+	$(CC) $(CFLAGS) $(LINK) $(OBJB) -o $@
 
 $(bonus_dir)%.o: $(bonus_dir)%.c $(bonus_dir)cub_bonus.h
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -56,6 +52,5 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME) $(NAME_BONUS)
-	make -C MLX clean
 
 re: fclean all

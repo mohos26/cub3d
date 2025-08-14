@@ -6,7 +6,7 @@
 /*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 09:31:08 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/12 11:23:27 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/14 10:06:19 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	init_player(t_game *data)
 	data->m_mp.height = data->m_mp.width;
 	data->colors.player_c = 6204374;
 	data->colors.tail_c = 16710599;
+	data->input.prev_x = WIN_WIDTH / 2;
 	while (y < data->map_height)
 	{
 		x = 0;
