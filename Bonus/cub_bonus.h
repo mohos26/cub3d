@@ -6,7 +6,7 @@
 /*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 17:27:11 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/14 17:04:52 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/15 15:05:50 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,11 +164,9 @@ typedef struct s_sound
 	ma_engine	engine;
 	ma_sound	w_sound;
 	ma_sound	s_sound;
-	ma_sound	b_sound;
 	int			is_engine;
 	int			is_w;
 	int			is_s;
-	int			is_b;
 }	t_sound;
 
 typedef struct s_game
