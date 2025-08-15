@@ -6,7 +6,7 @@
 /*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 15:07:28 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/14 17:09:54 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/15 13:59:33 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	init_sound2(t_game *data, char *s3, char *s2, ma_result *res)
 {
 	*res = ma_sound_init_from_file(&data->sound.engine, s2,
-			MA_SOUND_FLAG_DECODE, NULL, NULL, &data->sound.b_sound);
+			0, NULL, NULL, &data->sound.b_sound);
 	if (*res != MA_SUCCESS)
 		cleanup_exit("ERROR\nfailed loading background sound\n", data);
 	ma_sound_set_looping(&data->sound.b_sound, MA_TRUE);
@@ -37,9 +37,9 @@ void	init_sound(t_game *data)
 	char		*s2;
 	char		*s3;
 
-	s1 = "Bonus/sound/walk.wav";
-	s2 = "Bonus/sound/background.wav";
-	s3 = "Bonus/sound/shoot.wav";
+	s1 = "Bonus/sound/walk.mp3";
+	s2 = "Bonus/sound/background.mp3";
+	s3 = "Bonus/sound/shoot.mp3";
 	res = ma_engine_init(NULL, &data->sound.engine);
 	if (res != MA_SUCCESS)
 		cleanup_exit("ERROR\nfailed initialize sound\n", data);
