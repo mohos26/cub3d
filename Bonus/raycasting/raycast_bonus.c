@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:13:44 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/12 11:29:43 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/15 17:25:29 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@ void	hiro_intersec_check(t_game *data, int map_x, int map_y)
 {
 	int	is_wall_found;
 
+	char cell = data->map[map_y][map_x];
+	bool is_door = (cell == '2');
+	bool is_wall = (cell == '1') || (is_door && !door_is_open_at(data, map_x, map_y));
+
+	if (!(map_y >= 0 && map_x >= 0 && map_y < data->map_height
+		&& map_x < data->map_width && is_wall))
+		return ;
 	is_wall_found = 0;
 	while (data->ray.next_x >= 0 && data->ray.next_x < data->map_width * TILE
 		&& data->ray.next_y >= 0 && data->ray.next_y < data->map_height * TILE)

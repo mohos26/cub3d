@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 17:27:11 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/15 15:05:50 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/15 18:10:50 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define ROTATE_RIGHT 124
 # define ROTATE_LEFT 123
 # define ESC 53
+# define DOOR_OPEN 49
 
 # define FOV 60//in degree
 # define RAYS_NUM WIN_WIDTH
@@ -49,6 +50,13 @@
 # define TILE_2_SHOW 12
 
 # define SHOOT_KEY 7
+
+typedef struct s_door
+{
+	int x; // map coord (tile x)
+	int y; // map coord (tile y)
+	int open; // 0 = closed, 1 = open
+}	t_door;
 
 typedef struct s_color
 {
@@ -135,6 +143,7 @@ typedef struct s_ray
 	double	next_x;
 	double	next_y;
 	int		was_vertical;
+
 }	t_ray;
 
 typedef struct s_minimap
@@ -176,6 +185,9 @@ typedef struct s_game
 	char		**map;
 	double		map_width;
 	double		map_height;
+	t_door		*doors;
+	int			door_count;
+	t_image		door_tex;
 	t_player	player;
 	t_color		colors;
 	t_texture	tex;
@@ -220,6 +232,11 @@ void	init_sprites2(t_game *data, char *sp3);
 void	init_sound(t_game *data);
 void	sound_controle(t_game *data);
 void	sound_controle2(t_game *data);
+/* doors */
+void	init_door(t_game *data);
+void	interact_door(t_game *data);
+int		get_door_idx(t_game *data, int mx, int my);
+bool	door_is_open_at(t_game *data, int mx, int my);
 /* -------------------------------------------------------------------------- */
 
 bool	ft_isdigit(int c);
@@ -228,6 +245,7 @@ char	*get_next_line(int fd);
 void	*ft_calloc(size_t size);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);
+void	ft_scan_doors(t_game *data);
 void	ft_bzero(void *s, size_t n);
 int		ft_parse_rgb_string(char *s);
 char	*ft_get_file(char *file_name);

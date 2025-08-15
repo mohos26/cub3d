@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_controle_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:14:43 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/14 15:48:04 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/15 11:49:32 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	key_press(int keycode, t_game *data)
 		data->sprt.animation_complete = 0;
 		sound_controle2(data);
 	}
+	if (keycode == DOOR_OPEN)
+		interact_door(data);
 	return (0);
 }
 

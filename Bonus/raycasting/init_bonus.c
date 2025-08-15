@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 09:31:08 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/14 17:07:46 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/15 11:16:02 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void	init_all_img2(t_game *data)
 			&data->m_mp.mini_img.bbp, &data->m_mp.mini_img.row_len,
 			&data->m_mp.mini_img.endian);
 	init_sprites(data);
+	init_door(data);
 }
 
 void	init_all_img(t_game *data)

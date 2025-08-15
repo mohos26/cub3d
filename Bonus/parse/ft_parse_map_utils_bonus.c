@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_map_utils_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 21:43:02 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/08/12 10:08:46 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/15 10:31:22 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ bool ft_validate_line(char *line, char *prev_line, char *next_line)
 			if (!ft_check_surrounded(i, line, prev_line, next_line))
 				return (false);
 		}
-		else if (!(line[i] == '1' || line[i] == ' '))
+		else if (!(line[i] == '1' || line[i] == ' ' || line[i] == 'D'))
 			return (false);
 		i++;
 	}

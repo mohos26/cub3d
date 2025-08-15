@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_append_map_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 15:33:30 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/08/12 10:08:46 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/15 10:34:52 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub_bonus.h"
 
-static char *ft_prepare_line(char *line, int len)
+static char	*ft_prepare_line(char *line, int len)
 {
-	int i;
-	char *res;
+	int		i;
+	char	*res;
 
 	i = 0;
 	res = ft_strdup(line);
@@ -23,6 +23,8 @@ static char *ft_prepare_line(char *line, int len)
 	{
 		if (res[i] == ' ')
 			res[i] = '1';
+		else if (res[i] == 'D')
+			res[i] = '2';
 		i++;
 	}
 	while ((int)ft_strlen(res) < len)
@@ -30,12 +32,12 @@ static char *ft_prepare_line(char *line, int len)
 	return (res);
 }
 
-void ft_append_map(t_game *data, char *line)
+void	ft_append_map(t_game *data, char *line)
 {
-	int height;
-	char **lst;
-	int len;
-	int i;
+	int		height;
+	char	**lst;
+	int		len;
+	int		i;
 
 	lst = data->map;
 	len = ft_strlen(line);

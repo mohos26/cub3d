@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:44:14 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/08/12 10:08:46 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/15 10:13:39 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,5 @@ void parse(int ac, char **av, t_game *data)
 	}
 	if (!ft_init_scene_data(file_name, data))
 		ft_exit(1);
+	ft_scan_doors(data);
 }
