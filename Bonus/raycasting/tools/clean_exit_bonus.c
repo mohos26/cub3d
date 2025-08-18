@@ -6,7 +6,7 @@
 /*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 09:33:18 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/18 15:31:42 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/18 17:41:33 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	cleanup_sounds(t_game *data)
 		ma_sound_uninit(&data->sound.s_sound);
 	if (data->sound.is_d)
 		ma_sound_uninit(&data->sound.d_sound);
+	if (data->sound.is_b)
+		ma_sound_uninit(&data->sound.b_sound);
 	if (data->sound.is_engine)
 		ma_engine_uninit(&data->sound.engine);
 }
