@@ -6,7 +6,7 @@
 /*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:36:01 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/12 12:04:03 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/18 13:08:57 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ void	draw_minimap2(t_game *data, int map_cords[2])
 	{
 		if (data->map[map_cords[0]][map_cords[1]] == '1')
 			color = data->colors.tail_c;
+		else if (data->map[map_cords[0]][map_cords[1]] == '2'
+			&& !door_is_open_at(data, map_cords[1], map_cords[0]))
+			color = data->colors.door_c;
 		else
 			color = 0;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 09:31:08 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/15 11:16:02 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/08/18 10:53:14 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	init_player(t_game *data)
 	data->m_mp.height = data->m_mp.width;
 	data->colors.player_c = 6204374;
 	data->colors.tail_c = 16710599;
+	data->colors.door_c = 16753485;
 	data->input.prev_x = WIN_WIDTH / 2;
 	while (y < data->map_height)
 	{

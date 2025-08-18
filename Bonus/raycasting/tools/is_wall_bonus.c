@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_wall_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 09:21:35 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/15 15:34:02 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/08/18 13:45:26 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	is_wall(double x, double y, t_game *data)
 	int		wx;
 	int		wy;
 	char	c;
+	int		id;
 
 	wx = floor(x / TILE);
 	wy = floor(y / TILE);
@@ -27,7 +28,7 @@ int	is_wall(double x, double y, t_game *data)
 		return (1);
 	if (c == '2')
 	{
-		int id = get_door_idx(data, wx, wy);
+		id = get_door_idx(data, wx, wy);
 		if (id >= 0)
 			return (!data->doors[id].open);
 		return (1);

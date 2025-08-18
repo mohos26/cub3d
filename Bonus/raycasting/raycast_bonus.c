@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:13:44 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/15 17:25:29 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/08/18 15:11:52 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,6 @@ void	hiro_intersec_check(t_game *data, int map_x, int map_y)
 {
 	int	is_wall_found;
 
-	char cell = data->map[map_y][map_x];
-	bool is_door = (cell == '2');
-	bool is_wall = (cell == '1') || (is_door && !door_is_open_at(data, map_x, map_y));
-
-	if (!(map_y >= 0 && map_x >= 0 && map_y < data->map_height
-		&& map_x < data->map_width && is_wall))
-		return ;
 	is_wall_found = 0;
 	while (data->ray.next_x >= 0 && data->ray.next_x < data->map_width * TILE
 		&& data->ray.next_y >= 0 && data->ray.next_y < data->map_height * TILE)
@@ -31,16 +24,8 @@ void	hiro_intersec_check(t_game *data, int map_x, int map_y)
 		map_y = (int)data->ray.next_y / TILE;
 		if (data->ray.face_up)
 			map_y = (int)((data->ray.next_y - 1) / TILE);
-		if (map_y >= 0 && map_x >= 0 && map_y < data->map_height
-			&& map_x < data->map_width && data->map[map_y][map_x] == '1')
-		{
-			is_wall_found = 1;
-			data->ray.h_hit_x = data->ray.next_x;
-			data->ray.h_hit_y = data->ray.next_y;
-			data->ray.h_distance = r_distance(data->player.x, data->player.y,
-					data->ray.h_hit_x, data->ray.h_hit_y);
+		if (!found_wall_h(map_x, map_y, &is_wall_found, data))
 			break ;
-		}
 		data->ray.next_x += data->ray.x_step;
 		data->ray.next_y += data->ray.y_step;
 	}
@@ -84,16 +69,8 @@ void	vert_intersec_check(t_game *data, int map_x, int map_y)
 		map_y = (int)data->ray.next_y / TILE;
 		if (data->ray.face_left)
 			map_x = (int)((data->ray.next_x - 1) / TILE);
-		if (map_y >= 0 && map_x >= 0 && map_y < data->map_height
-			&& map_x < data->map_width && data->map[map_y][map_x] == '1')
-		{
-			is_wall_found = 1;
-			data->ray.v_hit_x = data->ray.next_x;
-			data->ray.v_hit_y = data->ray.next_y;
-			data->ray.v_distance = r_distance(data->player.x, data->player.y,
-					data->ray.v_hit_x, data->ray.v_hit_y);
+		if (!found_wall_v(map_x, map_y, &is_wall_found, data))
 			break ;
-		}
 		data->ray.next_x += data->ray.x_step;
 		data->ray.next_y += data->ray.y_step;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 17:27:11 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/15 18:10:50 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/08/18 15:27:15 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@
 
 typedef struct s_door
 {
-	int x; // map coord (tile x)
-	int y; // map coord (tile y)
-	int open; // 0 = closed, 1 = open
+	int x;
+	int y;
+	int open;
 }	t_door;
 
 typedef struct s_color
@@ -64,6 +64,7 @@ typedef struct s_color
 	int	ceiling_c;
 	int	tail_c;
 	int	player_c;
+	int	door_c;
 }	t_color;
 
 typedef struct s_input
@@ -173,9 +174,11 @@ typedef struct s_sound
 	ma_engine	engine;
 	ma_sound	w_sound;
 	ma_sound	s_sound;
+	ma_sound	d_sound;
 	int			is_engine;
 	int			is_w;
 	int			is_s;
+	int			is_d;
 }	t_sound;
 
 typedef struct s_game
@@ -206,7 +209,8 @@ void	where_ray_face(double angle, t_game *data);
 double	normalize_angle(double angle);
 int		is_collesion(double x, double y, t_game *data);
 double	r_distance(double x1, double y1, double x2, double y2);
-
+int		found_wall_h(int map_x, int map_y, int *is_wall_found, t_game *data);
+int		found_wall_v(int map_x, int map_y, int *is_wall_found, t_game *data);
 void	clear_image(t_image *img, int color, int width, int height);
 void	put_pixel_to_image(t_image *img, int x, int y, int color);
 
@@ -232,7 +236,7 @@ void	init_sprites2(t_game *data, char *sp3);
 void	init_sound(t_game *data);
 void	sound_controle(t_game *data);
 void	sound_controle2(t_game *data);
-/* doors */
+
 void	init_door(t_game *data);
 void	interact_door(t_game *data);
 int		get_door_idx(t_game *data, int mx, int my);

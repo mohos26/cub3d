@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendreing_tools_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 17:12:14 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/15 15:14:49 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/08/18 13:46:28 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 t_image	*get_texture(t_game *data)
 {
-	int hit_mx = (int)(data->ray.final_hit_x / TILE);
-	int hit_my = (int)(data->ray.final_hit_y / TILE);
+	int	hit_mx;
+	int	hit_my;
 
-	if (hit_mx >= 0 && hit_my >= 0 && hit_mx < data->map_width && hit_my < data->map_height)
-	{
-		if (data->map[hit_my][hit_mx] == '2')
-		{
-			puts("*");
-			return (&data->door_tex);
-		}
-	}
+	hit_mx = data->ray.final_hit_x / TILE;
+	hit_my = data->ray.final_hit_y / TILE;
+	if (data->ray.face_up)
+		hit_my = (data->ray.final_hit_y - 1) / TILE;
+	if (data->ray.face_left)
+		hit_mx = (data->ray.final_hit_x - 1) / TILE;
+	if (data->map[hit_my][hit_mx] == '2')
+		return (&data->door_tex);
 	if (data->ray.was_vertical)
 	{
 		if (data->ray.face_right)

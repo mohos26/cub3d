@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   move_controle_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:14:43 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/15 11:49:32 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/08/18 14:42:39 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub_bonus.h"
+
+void	key_press2(int keycode, t_game *data)
+{
+	if (keycode == SHOOT_KEY && !data->sprt.is_shooting)
+	{
+		data->input.shoot = 1;
+		data->sprt.is_shooting = 1;
+		data->sprt.current_frame = 0;
+		data->sprt.frame_counter = 0;
+		data->sprt.animation_complete = 0;
+		sound_controle2(data);
+	}
+	if (keycode == DOOR_OPEN)
+		interact_door(data);
+}
 
 int	key_press(int keycode, t_game *data)
 {
@@ -28,17 +43,7 @@ int	key_press(int keycode, t_game *data)
 		data->input.rot_left = 1;
 	if (keycode == ESC)
 		data->input.escap = 1;
-	if (keycode == SHOOT_KEY && !data->sprt.is_shooting)
-	{
-		data->input.shoot = 1;
-		data->sprt.is_shooting = 1;
-		data->sprt.current_frame = 0;
-		data->sprt.frame_counter = 0;
-		data->sprt.animation_complete = 0;
-		sound_controle2(data);
-	}
-	if (keycode == DOOR_OPEN)
-		interact_door(data);
+	key_press2(keycode, data);
 	return (0);
 }
 
