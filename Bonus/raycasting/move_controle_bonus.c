@@ -6,7 +6,7 @@
 /*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:14:43 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/18 17:53:04 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/19 13:28:25 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	key_press2(int keycode, t_game *data)
 		ma_sound_stop(&data->sound.b_sound);
 	if (keycode == UNMUTE && !ma_sound_is_playing(&data->sound.b_sound))
 		ma_sound_start(&data->sound.b_sound);
+	handle_zooming_feature(keycode, data);
 }
 
 int	key_press(int keycode, t_game *data)

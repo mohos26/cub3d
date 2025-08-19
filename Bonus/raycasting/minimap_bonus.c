@@ -6,7 +6,7 @@
 /*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:36:01 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/18 13:08:57 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/19 11:59:09 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	draw_minimap_tiles(int x, int y, t_game *data, int color)
 	int	pixel_x;
 
 	pixel_y = y;
-	while (pixel_y < y + MINI_TILE)
+	while (pixel_y < y + data->m_mp.tile)
 	{
 		pixel_x = x;
-		while (pixel_x < x + MINI_TILE)
+		while (pixel_x < x + data->m_mp.tile)
 		{
 			put_pixel_to_minimap(data, pixel_x, pixel_y, color);
 			pixel_x++;
@@ -49,8 +49,8 @@ void	draw_minimap2(t_game *data, int map_cords[2])
 		else
 			color = 0;
 	}
-	minimap_tile_x = (map_cords[1] - data->m_mp.start_x) * MINI_TILE;
-	minimap_tile_y = (map_cords[0] - data->m_mp.start_y) * MINI_TILE;
+	minimap_tile_x = (map_cords[1] - data->m_mp.start_x) * data->m_mp.tile;
+	minimap_tile_y = (map_cords[0] - data->m_mp.start_y) * data->m_mp.tile;
 	draw_minimap_tiles(minimap_tile_x, minimap_tile_y, data,
 		color);
 }
@@ -82,8 +82,10 @@ void	draw_minimap_player(t_game *data)
 	int	j;
 
 	i = -RADIUS;
-	mini_player_x = (data->player.x / TILE - data->m_mp.start_x) * MINI_TILE;
-	mini_player_y = (data->player.y / TILE - data->m_mp.start_y) * MINI_TILE;
+	mini_player_x = (data->player.x / TILE - data->m_mp.start_x)
+		* data->m_mp.tile;
+	mini_player_y = (data->player.y / TILE - data->m_mp.start_y)
+		* data->m_mp.tile;
 	while (i <= RADIUS)
 	{
 		j = -RADIUS;
@@ -109,7 +111,7 @@ void	draw_minimap(t_game *data)
 	clear_image(&data->m_mp.mini_img, 0, data->m_mp.width, data->m_mp.height);
 	player_x = floor(data->player.x / TILE);
 	player_y = floor(data->player.y / TILE);
-	half_tiles = TILE_2_SHOW / 2;
+	half_tiles = data->m_mp.tile_2_show / 2;
 	data->m_mp.start_x = player_x - half_tiles;
 	data->m_mp.start_y = player_y - half_tiles;
 	data->m_mp.end_x = player_x + half_tiles;

@@ -6,7 +6,7 @@
 /*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 17:27:11 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/18 17:50:40 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/19 13:36:16 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,12 @@
 
 # define BUFFER_SIZE 42
 
-# define MINI_TILE 12
-# define TILE_2_SHOW 12
-
 # define SHOOT_KEY 7
 # define DOOR_OPEN 49
 # define MUTE 46
 # define UNMUTE 32
+# define ZOOM_IN 125
+# define ZOOM_OUT 126
 
 typedef struct s_door
 {
@@ -157,6 +156,8 @@ typedef struct s_minimap
 	int		end_y;
 	int		width;
 	int		height;
+	int		tile_2_show;
+	int		tile;
 	t_image	mini_img;
 }	t_mini_mp;
 
@@ -217,6 +218,8 @@ int		found_wall_h(int map_x, int map_y, int *is_wall_found, t_game *data);
 int		found_wall_v(int map_x, int map_y, int *is_wall_found, t_game *data);
 void	clear_image(t_image *img, int color, int width, int height);
 void	put_pixel_to_image(t_image *img, int x, int y, int color);
+void	handle_zooming_feature(int keycode, t_game *data);
+void	init_data(t_game *data);
 
 int		destroy(void *args);
 void	cleanup_exit(char *message, t_game *data);

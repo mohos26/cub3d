@@ -6,7 +6,7 @@
 /*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 09:31:08 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/18 10:53:14 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/19 13:35:08 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,7 @@ void	init_player(t_game *data)
 	int	x;
 
 	y = 0;
-	data->m_mp.width = TILE_2_SHOW * MINI_TILE;
-	data->m_mp.height = data->m_mp.width;
-	data->colors.player_c = 6204374;
-	data->colors.tail_c = 16710599;
-	data->colors.door_c = 16753485;
-	data->input.prev_x = WIN_WIDTH / 2;
+	init_data(data);
 	while (y < data->map_height)
 	{
 		x = 0;
