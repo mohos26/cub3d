@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 10:55:34 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/08/12 10:08:46 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/24 09:56:33 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub_bonus.h"
 
-char *ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char *res;
-	char *head;
+	char	*res;
+	char	*head;
 
 	if (!s1 && !s2)
 		return (NULL);

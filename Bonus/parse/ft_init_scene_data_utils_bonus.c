@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_scene_data_utils_bonus.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 15:20:08 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/08/12 10:08:46 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/24 09:51:53 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub_bonus.h"
 
-static bool ft_set_texture_path(t_game *data, char *key, char *value)
+static bool	ft_set_texture_path(t_game *data, char *key, char *value)
 {
 	if (!ft_valid_file(value))
 		return (false);
@@ -29,9 +29,9 @@ static bool ft_set_texture_path(t_game *data, char *key, char *value)
 	return (true);
 }
 
-static bool ft_set_color_value(t_game *data, char *key, char *value)
+static bool	ft_set_color_value(t_game *data, char *key, char *value)
 {
-	int color;
+	int	color;
 
 	color = ft_parse_rgb_string(value);
 	if (color < 0)
@@ -47,22 +47,23 @@ static bool ft_set_color_value(t_game *data, char *key, char *value)
 	return (true);
 }
 
-static bool ft_handle_instruction(t_game *data, char *key, char *value)
+static bool	ft_handle_instruction(t_game *data, char *key, char *value)
 {
 	if (!key || !value || *value != ' ')
 		return (ft_error("Invalid instruction format. Expected '<key> <value>'",
-						 2));
+				2));
 	while (*value && *value == ' ')
 		value++;
-	if (!ft_set_texture_path(data, key, value) && !ft_set_color_value(data, key, value))
+	if (!ft_set_texture_path(data, key, value)
+		&& !ft_set_color_value(data, key, value))
 		return (ft_error("Unknown or malformed instruction key/value", 2));
 	return (true);
 }
 
-bool ft_parse_instruction(t_game *data, char *s)
+bool	ft_parse_instruction(t_game *data, char *s)
 {
-	char *key;
-	char *value;
+	char	*key;
+	char	*value;
 
 	while (*s == ' ')
 		s++;
@@ -76,7 +77,7 @@ bool ft_parse_instruction(t_game *data, char *s)
 		else
 		{
 			value = ft_strdup(s);
-			break;
+			break ;
 		}
 		s++;
 	}

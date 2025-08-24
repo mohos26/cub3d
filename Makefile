@@ -19,8 +19,6 @@ BONUS = $(bonus_dir)parse/aid/ft_bzero_bonus.c  $(bonus_dir)parse/aid/ft_isdigit
 	$(bonus_dir)raycasting/sprites_bonus.c  $(bonus_dir)raycasting/minimap_bonus.c  $(bonus_dir)raycasting/mouse_rotation_bonus.c   $(bonus_dir)raycasting/tools/put_pixel_to_minimap_bonus.c  $(bonus_dir)/sound/init_sound_bonus.c  $(bonus_dir)/sound/sound_bonus.c  $(bonus_dir)/sound/sound_control_bonus.c \
 	$(bonus_dir)parse/ft_scan_doors_bonus.c $(bonus_dir)raycasting/ft_doors_bonus.c  $(bonus_dir)raycasting/tools/found_wall_bonus.c  $(bonus_dir)raycasting/tools/handle_zoom.c  $(bonus_dir)raycasting/tools/init_data.c
 
-
-
 OBJS = $(SRC:.c=.o)
 
 OBJB = $(BONUS:.c=.o)
@@ -55,3 +53,5 @@ fclean: clean
 	$(RM) $(NAME) $(NAME_BONUS)
 
 re: fclean all
+
+.PHONY: clean

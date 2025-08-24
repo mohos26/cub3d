@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_map_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 16:12:02 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/08/12 10:08:46 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/24 09:52:40 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub_bonus.h"
 
-static char *ft_skip_empty_lines(int fd)
+static char	*ft_skip_empty_lines(int fd)
 {
-	char *line;
+	char	*line;
 
 	line = NULL;
 	while (true)
@@ -23,12 +23,12 @@ static char *ft_skip_empty_lines(int fd)
 		if (!line)
 			return (NULL);
 		if (*line != '\n')
-			break;
+			break ;
 	}
 	return (line);
 }
 
-static bool ft_read_next_line(char **line, bool end_line, int fd)
+static bool	ft_read_next_line(char **line, bool end_line, int fd)
 {
 	if (!end_line)
 	{
@@ -41,7 +41,7 @@ static bool ft_read_next_line(char **line, bool end_line, int fd)
 	return (true);
 }
 
-static char *ft_local_init(int fd, char **next, char **prev, bool *end_line)
+static char	*ft_local_init(int fd, char **next, char **prev, bool *end_line)
 {
 	*end_line = false;
 	*prev = NULL;
@@ -49,12 +49,12 @@ static char *ft_local_init(int fd, char **next, char **prev, bool *end_line)
 	return (ft_skip_empty_lines(fd));
 }
 
-bool ft_parse_map(t_game *data, int fd)
+bool	ft_parse_map(t_game *data, int fd)
 {
-	char *line;
-	bool end_line;
-	char *prev_line;
-	char *next_line;
+	char	*line;
+	bool	end_line;
+	char	*prev_line;
+	char	*next_line;
 
 	line = ft_local_init(fd, &next_line, &prev_line, &end_line);
 	if (!line)
@@ -65,12 +65,13 @@ bool ft_parse_map(t_game *data, int fd)
 			line[ft_strlen(line) - 1] = '\0';
 		else
 			end_line = true;
-		if (!ft_read_next_line(&next_line, end_line, fd) || !ft_validate_line(line, prev_line, next_line))
+		if (!ft_read_next_line(&next_line, end_line, fd)
+			|| !ft_validate_line(line, prev_line, next_line))
 			return (false);
 		ft_append_map(data, line);
 		prev_line = line;
 		if (!next_line)
-			break;
+			break ;
 		line = next_line;
 	}
 	return (true);

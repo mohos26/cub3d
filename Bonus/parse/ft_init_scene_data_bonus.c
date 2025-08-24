@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_scene_data_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 11:17:54 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/08/12 10:08:46 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/24 09:47:32 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub_bonus.h"
 
-static bool ft_check_finish(t_game *data)
+static bool	ft_check_finish(t_game *data)
 {
 	if (data->colors.ceiling_c < 0 || data->colors.floor_c < 0)
 		return (false);
@@ -21,7 +21,7 @@ static bool ft_check_finish(t_game *data)
 	return (true);
 }
 
-static void ft_local_init(t_game *data, bool *start)
+static void	ft_local_init(t_game *data, bool *start)
 {
 	*start = true;
 	data->map = NULL;
@@ -33,7 +33,7 @@ static void ft_local_init(t_game *data, bool *start)
 	data->colors.floor_c = -1;
 }
 
-static bool ft_aid(t_game *data, bool start, int fd)
+static bool	ft_aid(t_game *data, bool start, int fd)
 {
 	if (start)
 		return (ft_error("Empty File", fd));
@@ -44,11 +44,11 @@ static bool ft_aid(t_game *data, bool start, int fd)
 	return (close(fd), true);
 }
 
-bool ft_init_scene_data(char *file_name, t_game *data)
+bool	ft_init_scene_data(char *file_name, t_game *data)
 {
-	int fd;
-	char *line;
-	bool start;
+	int		fd;
+	char	*line;
+	bool	start;
 
 	ft_local_init(data, &start);
 	fd = open(file_name, O_RDONLY);
@@ -57,13 +57,13 @@ bool ft_init_scene_data(char *file_name, t_game *data)
 	while (true)
 	{
 		if (ft_check_finish(data))
-			break;
+			break ;
 		line = get_next_line(fd);
 		if (!line)
-			break;
+			break ;
 		start = false;
 		if (*line == '\n')
-			continue;
+			continue ;
 		if (!ft_parse_instruction(data, line))
 			return (close(fd), false);
 	}

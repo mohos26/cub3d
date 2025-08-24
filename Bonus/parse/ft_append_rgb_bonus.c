@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_append_rgb_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 10:22:31 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/08/12 10:08:46 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/24 09:30:50 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub_bonus.h"
 
-static bool ft_append_rgb(int *count, int *color, int *n, char **s)
+static bool	ft_append_rgb(int *count, int *color, int *n, char **s)
 {
 	while (*((*s) + 1) && *((*s) + 1) == ' ')
 		(*s)++;
@@ -22,12 +22,12 @@ static bool ft_append_rgb(int *count, int *color, int *n, char **s)
 	return (true);
 }
 
-int ft_parse_rgb_string(char *s)
+int	ft_parse_rgb_string(char *s)
 {
-	int n;
-	bool flag;
-	int count;
-	int color;
+	int		n;
+	bool	flag;
+	int		count;
+	int		color;
 
 	(true, n = 0, flag = false, count = 0, color = 0);
 	while (*s)

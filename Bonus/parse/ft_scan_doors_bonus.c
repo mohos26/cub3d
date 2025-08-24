@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 09:55:32 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/08/15 15:47:13 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/08/24 09:53:12 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ static void	ft_set_door(t_game *data, int i, int j, int d)
 
 void	ft_scan_doors(t_game *data)
 {
-	int i;
-	int j;
-	int d;
+	int	i;
+	int	j;
+	int	d;
 
 	data->door_count = ft_doors_length(data->map);
 	if (!data->door_count)

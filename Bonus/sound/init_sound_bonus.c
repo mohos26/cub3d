@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_sound_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 15:07:28 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/18 17:45:38 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/24 10:01:08 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	init_sound2(t_game *data, char *s2, char *s3, ma_result *res)
 	ma_sound_set_looping(&data->sound.s_sound, MA_FALSE);
 	data->sound.is_s = 1;
 	*res = ma_sound_init_from_file(&data->sound.engine, s3,
-		MA_SOUND_FLAG_DECODE, NULL, NULL, &data->sound.d_sound);
+			MA_SOUND_FLAG_DECODE, NULL, NULL, &data->sound.d_sound);
 	if (*res != MA_SUCCESS)
 		cleanup_exit("ERROR\nfailed loading door sound\n", data);
 	ma_sound_set_looping(&data->sound.d_sound, MA_FALSE);
 	data->sound.is_d = 1;
 	*res = ma_sound_init_from_file(&data->sound.engine, s4,
-		0, NULL, NULL, &data->sound.b_sound);
+			0, NULL, NULL, &data->sound.b_sound);
 	if (*res != MA_SUCCESS)
 		cleanup_exit("ERROR\nfailed loading background sound\n", data);
 	ma_sound_set_looping(&data->sound.b_sound, MA_TRUE);
