@@ -6,7 +6,7 @@
 /*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:14:43 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/19 13:28:25 by aouanni          ###   ########.fr       */
+/*   Updated: 2025/08/24 17:32:36 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,6 @@ void	key_press2(int keycode, t_game *data)
 	}
 	if (keycode == DOOR_OPEN)
 		interact_door(data);
-	if (keycode == MUTE && ma_sound_is_playing(&data->sound.b_sound))
-		ma_sound_stop(&data->sound.b_sound);
-	if (keycode == UNMUTE && !ma_sound_is_playing(&data->sound.b_sound))
-		ma_sound_start(&data->sound.b_sound);
 	handle_zooming_feature(keycode, data);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aouanni <aouanni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 17:27:11 by aouanni           #+#    #+#             */
-/*   Updated: 2025/08/24 09:30:21 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/08/24 17:32:51 by aouanni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@
 
 # define SHOOT_KEY 7
 # define DOOR_OPEN 49
-# define MUTE 46
-# define UNMUTE 32
 # define ZOOM_IN 125
 # define ZOOM_OUT 126
 
@@ -178,12 +176,10 @@ typedef struct s_sound
 	ma_sound	w_sound;
 	ma_sound	s_sound;
 	ma_sound	d_sound;
-	ma_sound	b_sound;
 	int			is_engine;
 	int			is_w;
 	int			is_s;
 	int			is_d;
-	int			is_b;
 }	t_sound;
 
 typedef struct s_game

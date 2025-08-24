@@ -17,7 +17,7 @@ BONUS = $(bonus_dir)parse/aid/ft_bzero_bonus.c  $(bonus_dir)parse/aid/ft_isdigit
 	$(bonus_dir)raycasting/tools/calcule_distance_bonus.c  $(bonus_dir)raycasting/tools/clean_exit_bonus.c  $(bonus_dir)raycasting/tools/clear_image_bonus.c  $(bonus_dir)raycasting/tools/ft_memset_bonus.c  $(bonus_dir)raycasting/tools/is_wall_bonus.c  \
 	$(bonus_dir)raycasting/tools/normalize_angle_bonus.c  $(bonus_dir)raycasting/tools/put_pixel_to_image_bonus.c  $(bonus_dir)raycasting/tools/putstr_fd_bonus.c  $(bonus_dir)raycasting/tools/rendreing_tools_bonus.c  $(bonus_dir)raycasting/tools/where_ray_face_bonus.c \
 	$(bonus_dir)raycasting/sprites_bonus.c  $(bonus_dir)raycasting/minimap_bonus.c  $(bonus_dir)raycasting/mouse_rotation_bonus.c   $(bonus_dir)raycasting/tools/put_pixel_to_minimap_bonus.c  $(bonus_dir)/sound/init_sound_bonus.c  $(bonus_dir)/sound/sound_bonus.c  $(bonus_dir)/sound/sound_control_bonus.c \
-	$(bonus_dir)parse/ft_scan_doors_bonus.c $(bonus_dir)raycasting/ft_doors_bonus.c  $(bonus_dir)raycasting/tools/found_wall_bonus.c  $(bonus_dir)raycasting/tools/handle_zoom.c  $(bonus_dir)raycasting/tools/init_data.c
+	$(bonus_dir)parse/ft_scan_doors_bonus.c $(bonus_dir)raycasting/ft_doors_bonus.c  $(bonus_dir)raycasting/tools/found_wall_bonus.c  $(bonus_dir)raycasting/tools/handle_zoom_bonus.c  $(bonus_dir)raycasting/tools/init_data_bonus.c
 
 OBJS = $(SRC:.c=.o)
 
