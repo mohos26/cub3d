@@ -6,13 +6,13 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 21:43:02 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/08/15 10:30:49 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/08/24 16:07:13 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
 
-static bool	ft_aid4(char c)
+static bool	ft_is_map_entity(char c)
 {
 	if (c == '0' || c == 'N' || c == 'W' || c == 'S' || c == 'E')
 		return (true);
@@ -55,7 +55,7 @@ bool	ft_validate_line(char *line, char *prev_line, char *next_line)
 	i = 0;
 	while (line[i])
 	{
-		if (ft_aid4(line[i]))
+		if (ft_is_map_entity(line[i]))
 		{
 			if (line[i] != '0')
 			{

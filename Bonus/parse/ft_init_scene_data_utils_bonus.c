@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 15:20:08 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/08/24 09:51:53 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/08/24 16:03:31 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static bool	ft_set_texture_path(t_game *data, char *key, char *value)
 {
-	if (!ft_valid_file(value))
+	if (!ft_valid_file(value)
+		|| ft_strcmp(value + ft_strlen(value) - 4, ".xpm"))
 		return (false);
 	if (!ft_strcmp(key, "NO") && !data->tex.no)
 		data->tex.no = value;

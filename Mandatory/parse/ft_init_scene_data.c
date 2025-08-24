@@ -6,7 +6,7 @@
 /*   By: mhoussas <mhoussas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 11:17:54 by mhoussas          #+#    #+#             */
-/*   Updated: 2025/08/06 10:27:53 by mhoussas         ###   ########.fr       */
+/*   Updated: 2025/08/24 16:06:09 by mhoussas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	ft_local_init(t_game *data, bool *start)
 	data->colors.floor_c = -1;
 }
 
-static bool	ft_aid(t_game *data, bool start, int fd)
+static bool	ft_finalize_scene(t_game *data, bool start, int fd)
 {
 	if (start)
 		return (ft_error("Empty File", fd));
@@ -67,5 +67,5 @@ bool	ft_init_scene_data(char *file_name, t_game *data)
 		if (!ft_parse_instruction(data, line))
 			return (close(fd), false);
 	}
-	return (ft_aid(data, start, fd));
+	return (ft_finalize_scene(data, start, fd));
 }
